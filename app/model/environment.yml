@@ -1,0 +1,12 @@
+name: webml
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - tensorflow
+  - jupyter
+  - numpy
+  - python=3.12.4
+  - flask
+  - gunicorn
