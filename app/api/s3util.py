@@ -10,7 +10,7 @@ class S3Uploader:
         # insert config here
         # config = {'region': 'us-east-2'}
         dotenv.load_dotenv()
-        self.client = boto3.client('s3', config={"region": "us-east-2"})
+        self.client = boto3.client('s3')
 
     def put_s3_image(self, image):
         print("uploading ", image.filename, " to s3")
