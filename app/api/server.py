@@ -27,9 +27,9 @@ def addUser():
         password = request.form.get('password')
         img = request.files['image']
         db.sign_up(name, password, img)
-        return f"hello from POST /user! {name} {password} {img.filename}"
+        return {"msg": f"hello from POST /user! {name} {password} {img.filename}"}
     else:
-        return db.get_all_users()
+        return {"users": db.get_all_users()}
 
 @app.route('/similar/<string:user1>/<string:user2>', methods=['GET'])
 def getSimilarity(user1, user2):
@@ -39,10 +39,8 @@ def getSimilarity(user1, user2):
 def getUser(token):
     user = db.get_user(token)
     if user:
-        return user
-    else:
-        return "error: no user found with name %s" % (token,)
-    return db.get_user(token)
+        return {"user": user}
+    return {"error": "no user found with name %s" % (token,)}
 
 
 if __name__=="__main__":

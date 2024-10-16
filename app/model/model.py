@@ -12,13 +12,13 @@ from io import BytesIO
 def preprocess_image(img_path, target_size=(299, 299), methods={}):
     img = image.load_img(img_path, target_size=target_size)
     
-    #
-    if "gray" in methods:
-        img = img.convert('L')
-    if "rotate" in methods:
-        img = img.rotate(methods["rotate"])
-    #
+    # possible way of implementing postprocess steps to extract further features
+    # if "gray" in methods:
+    #     img = img.convert('L')
+    # if "rotate" in methods:
+    #     img = img.rotate(methods["rotate"])
     
+
     img_array = image.img_to_array(img)
     print(img_array.shape)
     # Expand dimensions to match the input shape (batch size, height, width, channels)
@@ -52,8 +52,3 @@ class SimilarityModel:
             print(f"shape: {self.inputs[i].shape}")
             features.append(self.model.predict(self.inputs[i]))
         return float(cosine_similarity(features[0], features[1])[0][0])
-
-    def extract_features(self, img):
-        # Preprocess the image
-        features = self.model.predict(img)
-        return features

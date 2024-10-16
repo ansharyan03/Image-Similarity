@@ -4,6 +4,7 @@ from model.model import SimilarityModel
 from io import BytesIO
 from PIL import Image
 
+
 user_query = "SELECT * FROM users WHERE username=?"
 
 class UserImageDB:
@@ -26,7 +27,8 @@ class UserImageDB:
             self.s3.put_s3_image(image)
             cur.execute('INSERT INTO users VALUES (?, ?, ?)', (user, password, image.filename))
             self.db.commit()
-        
+            return True
+        return False       
     
     def get_user(self, user):
         cur = self.db.cursor()

@@ -9,8 +9,10 @@ dependencies:
   - numpy
   - scikit-learn
   - pillow
-  - python=3.12.4
-  - boto3
-  - flask
-  - flask_cors
-  - gunicorn
+  - python>=3.11
+  - pip:
+    - boto3
+    - flask
+    - flask_cors
+    - gunicorn
+    - python-dotenv
