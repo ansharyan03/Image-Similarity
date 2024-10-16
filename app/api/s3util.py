@@ -9,8 +9,8 @@ class S3Uploader:
         # the following line will handle config. If you have AWS CLI configured on your computer, comment it out and see if it works!
         # insert config here
         # config = {'region': 'us-east-2'}
-        dotenv.load_dotenv(dotenv_path='aws.env')
-        self.client = boto3.client('s3')
+        dotenv.load_dotenv()
+        self.client = boto3.client('s3', config={"region": "us-east-2"})
 
     def put_s3_image(self, image):
         print("uploading ", image.filename, " to s3")
